@@ -22,13 +22,14 @@ while True:
     random.shuffle(dwarfs)
 
     for d in dwarfs:
-        if sum(answer) + d == 100:
-            flag = True
-            break
         if sum(answer) + d > 100:
             break
-        if sum(answer) < 100:
-            answer.append(d)
+
+        answer.append(d)
+        
+        if sum(answer) == 100 and len(answer) == 7:
+            flag = True
+            break
 
     if flag:
         answer.sort()
