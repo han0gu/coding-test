@@ -29,7 +29,7 @@ else:
     cnt = 0
     me = total_tickets[0]
     others = total_tickets[1:]
-    while(True):
+    while True:
         target_value = max(others)
         
         if me > target_value:
