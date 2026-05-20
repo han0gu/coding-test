@@ -33,18 +33,16 @@ a, b, n, w = map(int, input().split())
 
 # sheep + goat = n
 # a * sheep + b * goat = w
-answer_count = 0
 answer = []
 for sheep in range(1, n):
     goat = n - sheep
     if a * sheep + b * goat == w:
-        answer_count += 1
-        if answer_count >= 2:
+        answer.append((sheep, goat))
+        if len(answer) > 1:
             break
-        
-        answer = [sheep, goat]
 
-if answer_count > 1 or not answer:
+if len(answer) > 1 or not answer:
     print(-1)
 else:
-    print(f"{answer[0]} {answer[1]}")
+    sheep, goat = answer[0]
+    print(f"{sheep} {goat}")
