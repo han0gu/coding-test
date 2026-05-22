@@ -36,7 +36,7 @@ def validate(input_number):
                 # print('target_number[row][col]', target_number[row][col])
                 if input_number[row][col] == '#' and target_number[row][col] == '.':
                     flag = False
-        # print(i, input_number_2, target_number, flag)    
+        # print(i, input_number_2, target_number, flag)
 
         if flag:
             return str(i)
