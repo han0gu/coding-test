@@ -11,34 +11,34 @@ flag = False
 
 def validate_candidates(candidates):
     # `O`가 없고 `X`가 4개 이상
-    if 'O' not in candidates and len(list(filter(lambda x: x == '.', candidates))) <= 1:
+    if 'O' not in candidates and candidates.count('.') <= 1:
         global flag
         flag = True
 
 def check_0(row, col):
     # 지정된 방향으로 5개 확인 -> 
-    if row + 4 <= ROW_MAX - 1:
+    if row + 4 < ROW_MAX:
         candidates = [board[row + i][col] for i in range(5)]
         # print('candidates',candidates)
         validate_candidates(candidates)
 
 def check_45(row, col):
     # 지정된 방향으로 5개 확인 -> 
-    if row - 4 >= 0 and col + 4 <= COL_MAX - 1 >= 0 :
+    if row - 4 >= 0 and col + 4 < COL_MAX:
         candidates = [board[row - i][col + i] for i in range(5)]
         # print('candidates',candidates)
         validate_candidates(candidates)
 
 def check_90(row, col):
     # 지정된 방향으로 5개 확인 -> 
-    if col + 4 <= COL_MAX - 1:
+    if col + 4 < COL_MAX:
         candidates = [board[row][col + i] for i in range(5)]
         # print('candidates',candidates)
         validate_candidates(candidates)
 
 def check_135(row, col):
     # 지정된 방향으로 5개 확인 -> 
-    if row + 4 <= ROW_MAX - 1 and col + 4 <= COL_MAX - 1:
+    if row + 4 < ROW_MAX and col + 4 < COL_MAX:
         candidates = [board[row + i][col + i] for i in range(5)]
         # print('candidates',candidates)
         validate_candidates(candidates)
