@@ -4,27 +4,21 @@
 -10 <= x,y <= 10
 """
 import math
+from itertools import permutations
 
-dot_coordinates = [input().split() for _ in range(4)]
+dot_coordinates = [list(map(int,input().split())) for _ in range(4)]
 # print(dot_coordinates)
 
-visit_orders = [
-    [0,1,2,3],
-    [0,1,3,2],
-    [0,2,1,3],
-    [0,2,3,1],
-    [0,3,1,2],
-    [0,3,2,1],
-]
+visit_orders = [[0] + list(order) for order in permutations([1,2,3])]
 
 def calculate_distance(visit_order):
     distance = 0
 
-    for i in range(3):
+    for i in range(len(visit_order) - 1):
         cur_dot = visit_order[i]
         next_dot = visit_order[i + 1]
-        x_diff = int(dot_coordinates[cur_dot][0]) - int(dot_coordinates[next_dot][0])
-        y_diff = int(dot_coordinates[cur_dot][1]) - int(dot_coordinates[next_dot][1])
+        x_diff = dot_coordinates[cur_dot][0] - dot_coordinates[next_dot][0]
+        y_diff = dot_coordinates[cur_dot][1] - dot_coordinates[next_dot][1]
         distance += math.sqrt(x_diff**2 + y_diff**2)
 
     return distance
