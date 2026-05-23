@@ -5,8 +5,6 @@
 
 1 ≤ x ≤ 2,000,000
 """
-from itertools import combinations
-
 n = int(input())
 
 numbers = list(map(int, input().split()))
@@ -14,10 +12,21 @@ numbers = list(map(int, input().split()))
 
 x = int(input())
 
+
+numbers.sort()
+start = 0
+end = len(numbers) - 1
 answer = 0
-for a, b in combinations(numbers, 2):
-    if a + b == x:
-        # print(a + b)
+
+while start < end:
+    total = numbers[start] + numbers[end]
+    if total == x:
         answer += 1
+        start += 1
+        end -= 1
+    elif total < x:
+        start += 1
+    else:
+        end -= 1
 
 print(answer)
