@@ -10,6 +10,8 @@
 #  3. INTEGER_ARRAY rightChild
 #
 
+from collections import deque
+
 def getBinarySearchTreeHeight(values, leftChild, rightChild):
     # print('values', values)
     # print('leftChild', leftChild)
@@ -18,16 +20,17 @@ def getBinarySearchTreeHeight(values, leftChild, rightChild):
     if len(values) <= 1:
         return len(values)
 
-    stack = [(0, 1)] # idx, depth
+    queue = deque()
+    queue.append((0, 1)) # idx, depth
     answer = 1
-    while stack:
-        i, depth = stack.pop()
+    while queue:
+        i, depth = queue.popleft()
         answer = max(answer, depth)
 
         if leftChild[i] != -1:
-            stack.append((leftChild[i], depth + 1))
+            queue.append((leftChild[i], depth + 1))
         if rightChild[i] != -1:
-            stack.append((rightChild[i], depth + 1))
+            queue.append((rightChild[i], depth + 1))
 
     return answer
 
