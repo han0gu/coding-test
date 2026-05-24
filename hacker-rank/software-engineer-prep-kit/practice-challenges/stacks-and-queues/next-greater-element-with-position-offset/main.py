@@ -9,24 +9,22 @@
 
 def findNextGreaterElementsWithDistance(readings):
     # print('readings', readings)
-    
+
     if len(readings) < 2:
         return [[-1,-1]]
-    
-    answer = []
-    
-    for cur_idx, cur_val in enumerate(readings):
-        flag = False
-        
-        for next_idx, next_val in enumerate(readings[cur_idx:]):
-            if next_val > cur_val:
-                flag = True
-                answer.append([next_val, next_idx])
-                break
-            
-        if not flag:
-            answer.append([-1, -1])
-            
+
+    answer = [[-1, -1] for _ in range(len(readings))]
+    # print('answer', answer)
+
+    stack = []
+    for cur_idx, cur_value in enumerate(readings):
+        while stack and readings[stack[-1]] < cur_value:
+            prev_idx = stack.pop()
+            answer[prev_idx] = [cur_value, cur_idx - prev_idx]
+
+        stack.append(cur_idx)
+        # print('stack', stack)
+
     return answer
 
 if __name__ == '__main__':
