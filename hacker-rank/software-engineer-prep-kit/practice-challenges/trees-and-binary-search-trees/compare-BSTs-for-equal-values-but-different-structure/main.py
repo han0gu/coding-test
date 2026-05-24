@@ -10,26 +10,26 @@
 #
 
 def verifySameMultisetDifferentStructure(root1, root2):
-        
+
     if not root1 or not root2 or (root1 == root2):
         return 0
-        
+
     exclude = 100001
-    
+
     real_idx_1 = []
     real_value_1 = []
     for i, v in enumerate(root1):
         if v != exclude:
             real_idx_1.append(i)
             real_value_1.append(v)
-            
+
     real_idx_2 = []
     real_value_2 = []
     for i, v in enumerate(root2):
         if v != exclude:
             real_idx_2.append(i)
             real_value_2.append(v)
-            
+
     return real_idx_1 != real_idx_2 and sorted(real_value_1) == sorted(real_value_2)
 
 if __name__ == '__main__':
