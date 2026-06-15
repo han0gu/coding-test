@@ -7,26 +7,17 @@
 전체 의상 1~30개
 """
 from collections import Counter
-from itertools import combinations
-import math
 
 def solution(clothes):
-    answer = 0
+    answer = 1
     
     # 카테고리별로 dict 생성
-    category_dict = Counter([c[1] for c in clothes])
+    category_dict = Counter(cate for _, cate in clothes)
     # print('category_dict', category_dict)
     
+    # (각 카테고리의 개수 + 안 입는 경우)의 곱셈
+    for v in category_dict.values():
+        answer *= v + 1
     
-    # 1,2,3, ... , n개의 카테고리를 선택하는 모든 경우의 수(tuple)를 구함
-    keys = category_dict.keys()
-    for i in range(len(keys)):
-        for comb in combinations(keys, i+1):
-            # print('comb', comb)
-            
-            cnt = math.prod([category_dict[x] for x in comb])
-            # print('cnt', cnt)
-            
-            answer += cnt
-
-    return answer
+    # 아무것도 안 입는 경우 제외
+    return answer - 1
