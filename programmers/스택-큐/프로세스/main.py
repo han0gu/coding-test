@@ -1,24 +1,27 @@
 from collections import deque
 
 def solution(priorities, location):
-    priorities_q = deque(sorted(priorities, reverse=True)) # 작업 우선 순위 판단
-    priorities_processed = [-1] * len(priorities) # 작업 완료 여부 판단
-    # print('priorities_q', priorities_q, priorities_processed)
+    sorted_priorities = deque(sorted(priorities, reverse=True)) # 작업 우선 순위 판단
+    process_q = deque((i, p) for i, p in enumerate(priorities)) # 작업 Q
+    # print('p_q', p_q, sorted_priorities)
+    
     
     # 작업이 남은 동안
-    order = 1
-    while priorities_q:
-        # priorities를 순회하면서
-        for i, v in enumerate(priorities):
-            # 현재 작업 미완료 상태이고 priorities_q의 head와 같은 경우
-            if priorities_processed[i] == -1 and v == priorities_q[0]:
-                # 실행 처리
-                priorities_processed[i] = order
-                order += 1
-                priorities_q.popleft()
-            # else
-                # continue
-                
-    # answer = priorities_processed에서 location 찾기
-    # print(priorities_processed)
-    return priorities_processed[location]
+    order = 0
+    while process_q:
+        # 하나 꺼냄
+        i, p = process_q.popleft()
+        
+        # 최우선 순위인 경우
+        if p == sorted_priorities[0]:
+            # 완료 처리
+            order += 1
+            sorted_priorities.popleft()
+            
+            # 원하는 답인 경우 return
+            if i == location:
+                return order
+        # 아닌 경우
+        else:
+            # 다시 넣음
+            process_q.append((i, p))
