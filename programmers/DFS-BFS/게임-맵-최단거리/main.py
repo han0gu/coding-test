@@ -9,7 +9,7 @@ def solution(maps):
     visited[0][0] = True
     q = deque([(0, 0, 1)])
 
-    directions = ((-1,0), (0,1), (1,0), (0,-1))
+    directions = ((-1, 0), (0, 1), (1, 0), (0, -1))
 
     while q:
         r, c, acc = q.popleft()
@@ -22,9 +22,9 @@ def solution(maps):
             new_c = c + d_c
 
             if (
-                0 <= new_r < n and 
-                0 <= new_c < m and 
-                not visited[new_r][new_c] 
+                0 <= new_r < n and
+                0 <= new_c < m and
+                not visited[new_r][new_c]
                 and maps[new_r][new_c] == 1
             ):
                 visited[new_r][new_c] = True
