@@ -1,17 +1,14 @@
 def solution(s):
     answer = []
     
-    ls = s.split(' ')
+    words = s.split(' ')
     
-    for s in ls:
-        # 공백 처리
-        if not s:
-            answer.append('@')
-            continue
-            
-        s = s.lower() # toLower
-        s = s[0].upper() + s[1:] # 맨 첫 글자만 대문자로 변경
-        answer.append(s)
-    
-    return ' '.join(answer).replace('@', '')
+    for w in words:
+        if w:
+            w = w.lower()
+            w = w[0].upper() + w[1:]
+        
+        answer.append(w)
+        
+    return ' '.join(answer)
     
