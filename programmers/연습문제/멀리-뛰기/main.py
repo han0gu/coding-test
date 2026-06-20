@@ -8,12 +8,9 @@
 -> 2에서 +2
 """
 def solution(n):
-    if n <= 2:
-        return n
-
-    a = 1
-    b = 2
-    for _ in range(3, n + 1):
+    a = 0
+    b = 1
+    for _ in range(n):
         a, b = b, (a + b) % 1234567
 
     return b
